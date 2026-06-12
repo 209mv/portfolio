@@ -8,47 +8,48 @@
 </head>
 <body>
 
-<!-- BOOT / SIGN IN SCREEN -->
-<div id="boot-screen">
-  <div class="boot-box glass">
-    <h1>Portfolio OS</h1>
-    <p>Welcome</p>
-    <button onclick="enter()">Sign In</button>
+<!-- BOOT SCREEN -->
+<div id="boot">
+  <div class="boot-box">
+    <h1>Starting Portfolio OS...</h1>
+    <div class="bar"><div class="fill"></div></div>
   </div>
 </div>
 
 <!-- DESKTOP -->
 <div id="desktop" class="hidden">
 
+  <!-- TASKBAR -->
+  <div class="taskbar">
+    <div>Start</div>
+    <div class="right">
+      <button onclick="toggleCRT()">CRT</button>
+    </div>
+  </div>
+
+  <!-- ICONS -->
   <div class="icon" onclick="openWindow('about')">🧑 About</div>
   <div class="icon" onclick="openWindow('certs')">📜 Certs</div>
   <div class="icon" onclick="openWindow('skills')">💻 Skills</div>
   <div class="icon" onclick="openWindow('contact')">📧 Contact</div>
 
   <!-- WINDOWS -->
-  <div id="about" class="window hidden">
-    <div class="titlebar">
-      About
-      <button onclick="closeWindow('about')">X</button>
-    </div>
-    <div class="content">
-      <p>Cybersecurity & Machine Learning learner.</p>
-    </div>
+  <div id="about" class="window hidden draggable">
+    <div class="titlebar">About <button onclick="closeWindow('about')">X</button></div>
+    <div class="content">Cybersecurity + ML learner.</div>
   </div>
 
-  <div id="certs" class="window hidden">
-    <div class="titlebar">
-      Certifications
-      <button onclick="closeWindow('certs')">X</button>
-    </div>
+  <div id="certs" class="window hidden draggable">
+    <div class="titlebar">Certs <button onclick="closeWindow('certs')">X</button></div>
     <div class="content" id="cert-list"></div>
-    <div class="content" id="badge-list"></div>
   </div>
 
 </div>
 
+<audio id="clickSound" src="assets/click.mp3"></audio>
+<audio id="startupSound" src="assets/startup.mp3"></audio>
+
 <script src="data.js"></script>
 <script src="script.js"></script>
-
 </body>
 </html>
