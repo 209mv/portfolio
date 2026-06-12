@@ -1,58 +1,33 @@
-const certContainer = document.getElementById("certs-container");
-const projectContainer = document.getElementById("projects-container");
+function enter() {
+  document.getElementById("boot-screen").style.display = "none";
+  document.getElementById("desktop").classList.remove("hidden");
+}
 
-/* ---------------- CERTS ---------------- */
-certs.forEach((cert, i) => {
-  const div = document.createElement("div");
-  div.className = "cert glass";
+function openWindow(id) {
+  document.getElementById(id).classList.remove("hidden");
+}
 
-  div.innerHTML = `
-    <div class="cert-header">
-      <strong>${cert.title}</strong>
-      <span>${cert.provider}</span>
-    </div>
-    <div class="cert-details">
-      <p>${cert.details}</p>
-    </div>
-  `;
+function closeWindow(id) {
+  document.getElementById(id).classList.add("hidden");
+}
 
-  div.querySelector(".cert-header").onclick = () => {
-    div.classList.toggle("open");
-  };
+/* CERTS + BADGES */
+const certs = [
+  { title: "Cisco Cybersecurity", provider: "Cisco" },
+  { title: "Google ML Crash Course", provider: "Google" }
+];
 
-  certContainer.appendChild(div);
+const certList = document.getElementById("cert-list");
+certs.forEach(c => {
+  certList.innerHTML += `<p><b>${c.title}</b> - ${c.provider}</p>`;
 });
 
-/* ---------------- GITHUB PROJECTS ---------------- */
-/* Replace "YOUR_USERNAME" */
-const username = "209mv";
+const badges = [
+  { title: "Cybersecurity Basics", issuer: "Cisco" },
+  { title: "ML Foundations", issuer: "Google" }
+];
 
-fetch(`https://api.github.com/users/${username}/repos`)
-  .then(res => res.json())
-  .then(repos => {
-    repos.slice(0, 6).forEach(repo => {
-      const card = document.createElement("div");
-      card.className = "card glass";
-
-      card.innerHTML = `
-        <h3>${repo.name}</h3>
-        <p>${repo.description || "No description"}</p>
-        <a href="${repo.html_url}" target="_blank">View Repo</a>
-      `;
-
-      projectContainer.appendChild(card);
-    });
-  });
-
-/* ---------------- SCROLL ANIMATION ---------------- */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("active");
-    }
-  });
-});
-
-document.querySelectorAll(".reveal").forEach(el => {
-  observer.observe(el);
+const badgeList = document.getElementById("badge-list");
+badges.forEach(b => {
+  badgeList.innerHTML += `<p>🏅 ${b.title} - ${b.issuer}</p>`;
 });
