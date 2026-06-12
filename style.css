@@ -2,18 +2,17 @@ body {
   margin: 0;
   font-family: "MS Sans Serif", Arial;
   background: #008080;
+  overflow: hidden;
 }
 
-/* GLASS */
-.glass {
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 20px;
+/* CRT MODE */
+.crt {
+  filter: contrast(1.2) brightness(0.9) saturate(1.2);
+  text-shadow: 0 0 2px rgba(0,255,0,0.3);
 }
 
-/* BOOT SCREEN */
-#boot-screen {
+/* BOOT */
+#boot {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -23,22 +22,29 @@ body {
 
 .boot-box {
   text-align: center;
+  color: white;
 }
 
-/* BUTTON */
-button {
-  padding: 8px 15px;
-  cursor: pointer;
-  border: 1px solid black;
-  background: #c0c0c0;
+.bar {
+  width: 200px;
+  height: 20px;
+  border: 2px solid white;
+  margin-top: 10px;
+}
+
+.fill {
+  width: 0%;
+  height: 100%;
+  background: white;
+  animation: load 3s forwards;
+}
+
+@keyframes load {
+  100% { width: 100%; }
 }
 
 /* DESKTOP */
-#desktop {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-}
+.hidden { display: none; }
 
 .icon {
   width: 80px;
@@ -47,18 +53,12 @@ button {
   color: white;
 }
 
-/* WINDOW */
+/* WINDOWS */
 .window {
   position: absolute;
-  top: 120px;
-  left: 200px;
-  width: 320px;
+  width: 300px;
   background: #c0c0c0;
   border: 2px solid black;
-}
-
-.hidden {
-  display: none;
 }
 
 .titlebar {
@@ -67,9 +67,21 @@ button {
   display: flex;
   justify-content: space-between;
   padding: 5px;
+  cursor: move;
 }
 
 .content {
   padding: 10px;
-  color: black;
+}
+
+/* TASKBAR */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  background: #c0c0c0;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 }
