@@ -3,47 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mauricio | Portfolio</title>
+  <title>Portfolio OS</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <nav class="navbar glass">
-    <div class="logo">Mauricio.dev</div>
-    <div class="links">
-      <a href="#about">About</a>
-      <a href="#certs">Certs</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+<!-- BOOT / SIGN IN SCREEN -->
+<div id="boot-screen">
+  <div class="boot-box glass">
+    <h1>Portfolio OS</h1>
+    <p>Welcome</p>
+    <button onclick="enter()">Sign In</button>
+  </div>
+</div>
+
+<!-- DESKTOP -->
+<div id="desktop" class="hidden">
+
+  <div class="icon" onclick="openWindow('about')">🧑 About</div>
+  <div class="icon" onclick="openWindow('certs')">📜 Certs</div>
+  <div class="icon" onclick="openWindow('skills')">💻 Skills</div>
+  <div class="icon" onclick="openWindow('contact')">📧 Contact</div>
+
+  <!-- WINDOWS -->
+  <div id="about" class="window hidden">
+    <div class="titlebar">
+      About
+      <button onclick="closeWindow('about')">X</button>
     </div>
-  </nav>
+    <div class="content">
+      <p>Cybersecurity & Machine Learning learner.</p>
+    </div>
+  </div>
 
-  <header class="hero glass reveal">
-    <h1>Mauricio Valdez Iniguez</h1>
-    <p>Cybersecurity & Machine Learning Learner</p>
-  </header>
+  <div id="certs" class="window hidden">
+    <div class="titlebar">
+      Certifications
+      <button onclick="closeWindow('certs')">X</button>
+    </div>
+    <div class="content" id="cert-list"></div>
+    <div class="content" id="badge-list"></div>
+  </div>
 
-  <section id="about" class="section glass reveal">
-    <h2>About Me</h2>
-    <p>Learning cybersecurity, machine learning, and building small real-world projects.</p>
-  </section>
+</div>
 
-  <section id="certs" class="section glass reveal">
-    <h2>Certifications</h2>
-    <div id="certs-container"></div>
-  </section>
+<script src="data.js"></script>
+<script src="script.js"></script>
 
-  <section id="projects" class="section glass reveal">
-    <h2>GitHub Projects</h2>
-    <div id="projects-container"></div>
-  </section>
-
-  <footer id="contact" class="footer glass reveal">
-    <h2>Contact</h2>
-    <a href="mailto:your-email@gmail.com">Email Me</a>
-  </footer>
-
-  <script src="certs.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>
