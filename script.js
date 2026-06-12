@@ -25,7 +25,7 @@ certs.forEach((cert, i) => {
 
 /* ---------------- GITHUB PROJECTS ---------------- */
 /* Replace "YOUR_USERNAME" */
-const username = "YOUR_GITHUB_USERNAME";
+const username = "209mv";
 
 fetch(`https://api.github.com/users/${username}/repos`)
   .then(res => res.json())
