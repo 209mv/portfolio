@@ -1,33 +1,58 @@
-function enter() {
-  document.getElementById("boot-screen").style.display = "none";
-  document.getElementById("desktop").classList.remove("hidden");
+const desktop = document.getElementById("desktop");
+
+/* BOOT */
+setTimeout(() => {
+  document.getElementById("boot").style.display = "none";
+  desktop.classList.remove("hidden");
+
+  document.getElementById("startupSound").play();
+}, 3000);
+
+/* SOUND */
+function click() {
+  document.getElementById("clickSound").play();
 }
 
+/* WINDOWS */
 function openWindow(id) {
+  click();
   document.getElementById(id).classList.remove("hidden");
 }
 
 function closeWindow(id) {
+  click();
   document.getElementById(id).classList.add("hidden");
 }
 
-/* CERTS + BADGES */
-const certs = [
-  { title: "Cisco Cybersecurity", provider: "Cisco" },
-  { title: "Google ML Crash Course", provider: "Google" }
-];
-
+/* CERTS */
 const certList = document.getElementById("cert-list");
+
 certs.forEach(c => {
   certList.innerHTML += `<p><b>${c.title}</b> - ${c.provider}</p>`;
 });
 
-const badges = [
-  { title: "Cybersecurity Basics", issuer: "Cisco" },
-  { title: "ML Foundations", issuer: "Google" }
-];
+/* CRT TOGGLE */
+function toggleCRT() {
+  document.body.classList.toggle("crt");
+}
 
-const badgeList = document.getElementById("badge-list");
-badges.forEach(b => {
-  badgeList.innerHTML += `<p>🏅 ${b.title} - ${b.issuer}</p>`;
+/* DRAGGABLE WINDOWS */
+document.querySelectorAll(".draggable").forEach(win => {
+  let isDown = false, offsetX, offsetY;
+
+  const bar = win.querySelector(".titlebar");
+
+  bar.addEventListener("mousedown", e => {
+    isDown = true;
+    offsetX = e.clientX - win.offsetLeft;
+    offsetY = e.clientY - win.offsetTop;
+  });
+
+  document.addEventListener("mousemove", e => {
+    if (!isDown) return;
+    win.style.left = (e.clientX - offsetX) + "px";
+    win.style.top = (e.clientY - offsetY) + "px";
+  });
+
+  document.addEventListener("mouseup", () => isDown = false);
 });
